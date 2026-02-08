@@ -1,0 +1,23 @@
+<div class="pagination">
+    <div class="container">
+        <div class="inner-wrap">
+            <div class="prev-button pagination-item" data-page="<%= objectPagination.currentPage - 1 %>">
+                <i class="fa-solid fa-arrow-left"></i>
+                <span>Previous</span>
+            </div>
+
+            <div class="page-button">
+                <ul class="pagination-list">
+                    <% for(let i = 1; i <= objectPagination.totalPage; i++) { %>
+                        <li class="pagination-item <%= i === objectPagination.currentPage ? 'active': '' %> " data-page="<%= i %>"><%= i %></li>
+                    <% } %>
+                </ul>
+            </div>
+
+            <div class="next-button pagination-item" data-page="<%= objectPagination.currentPage + 1 %>">
+                <span>Next</span>
+                <i class="fa-solid fa-arrow-right"></i>   
+            </div>
+        </div>
+    </div>
+</div>

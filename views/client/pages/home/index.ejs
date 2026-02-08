@@ -1,0 +1,197 @@
+<div class="hero">
+    <div class="container text-center">
+        <h1 class="hero-title">THE BLOG</h1>
+    </div>
+</div>
+
+<% if (posts.length>0){ %>
+    <div class="recent-blog-posts">
+        <div class="container">
+            <h2 class="mb-4">Recent blog posts</h2>
+            <div class="row">
+                <div class="col-xl-6 col-lg-12">
+                    <%if(posts[0]) {%>
+                        <div class="post-featured">
+                            <a href="#" target="_blank" class="post-featured-image d-block">
+                                <img class="post-featured-image" src="/images/2tp.jpg" alt="">
+                            </a>
+                            <small class="author-date-color">
+                                <%= posts[0].formattedDate %>
+                            </small>
+                            <div class="d-flex align-items-center justify-content-between">
+                                <a href="#" target="_blank" class="title-color mt-1 d-block fs-2">
+                                    <%= posts[0].title %>
+                                </a>
+                                <a href="#" target="_blank" class="title-color mt-1 d-block">
+                                    <i class="fa-solid fa-arrow-up-right-from-square"></i>
+                                </a>
+                            </div>
+                            <p class="text-color post-subtitle-post-featured">
+                                <%= posts[0].content%>
+                            </p>
+
+                            <ul class="tag-list">
+                                <% posts[0].tagsDetail.forEach((item)=>{ %>
+                                    <li class="tag" data-name="<%= item.name %>" data-bg="<%= item.color.bg %>"
+                                        data-text="<%= item.color.text %>">
+                                        <%= item.name %>
+                                    </li>
+                                    <% }) %>
+                            </ul>
+                        </div>
+                        <% } %>
+                </div>
+                <div class="col-xl-6 col-lg-12">
+                    <% if(posts[1]){ %>
+                        <div class="post-wide">
+                            <div class="row">
+                                <div class="col-xl-7 col-lg-5 col-md-5 col-sm-5">
+                                    <a href="#" target="_blank" class="post-wide-image d-block">
+                                        <img src="/images/2tp.jpg" alt="">
+                                    </a>
+                                </div>
+                                <div class="col-xl-5 col-lg-7 col-md-7 col-sm-7">
+                                    <small class="author-date-color">
+                                        <%= posts[1].formattedDate %>
+                                    </small>
+                                    <a href="#" target="_blank" class="title-color mt-1 d-block fs-4">
+                                        <%= posts[1].title %>
+                                    </a>
+                                    <p class="text-color post-subtitle-post-wide">
+                                        <%= posts[1].content%>
+                                    </p>
+                                    <ul class="tag-list">
+                                        <% posts[1].tagsDetail.forEach((item)=>{ %>
+                                            <li class="tag" data-name="<%= item.name %>" data-bg="<%= item.color.bg %>"
+                                                data-text="<%= item.color.text %>">
+                                                <%= item.name %>
+                                            </li>
+                                            <% }) %>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                        <% } %>
+
+                            <% if(posts[2]){ %>
+                                <div class="post-wide">
+                                    <div class="row">
+                                        <div class="col-xl-7 col-lg-5 col-md-5 col-sm-5">
+                                            <a href="#" target="_blank" class="post-wide-image d-block">
+                                                <img src="/images/2tp.jpg" alt="">
+                                            </a>
+                                        </div>
+                                        <div class="col-xl-5 col-lg-7 col-md-7 col-sm-7">
+                                            <small class="author-date-color">
+                                                <%= posts[2].formattedDate %>
+                                            </small>
+                                            <a href="#" target="_blank" class="title-color d-block fs-4">
+                                                <%= posts[2].title %>
+                                            </a>
+                                            <p class="text-color post-subtitle-post-wide">
+                                                <%= posts[2].content%>
+                                            </p>
+                                            <ul class="tag-list">
+                                                <% posts[2].tagsDetail.forEach((item)=>{ %>
+                                                    <li class="tag" data-name="<%= item.name %>"
+                                                        data-bg="<%= item.color.bg %>"
+                                                        data-text="<%= item.color.text %>">
+                                                        <%= item.name %>
+                                                    </li>
+                                                    <% }) %>
+                                            </ul>
+                                        </div>
+                                    </div>
+                                </div>
+                                <% } %>
+                </div>
+            </div>
+
+            <% if(posts[3]) { %>
+                <div class="post-bottom">
+                    <div class="row">
+                        <div class="col-xl-6 col-lg-12">
+                            <a href="#" target="_blank" class="post-bottom-image d-block">
+                                <img src="/images/2tp.jpg" alt="">
+                            </a>
+                        </div>
+                        <div class="col-xl-6 col-lg-12">
+                            <small class="author-date-color">
+                                <%= posts[3].formattedDate %>
+                            </small>
+                            <div class="d-flex align-items-center justify-content-between">
+                                <a href="#" target="_blank" class="title-color d-block fs-3">
+                                    <%= posts[3].title %>
+                                </a>
+                                <a href="#" target="_blank" class="title-color mt-1 d-block">
+                                    <i class="fa-solid fa-arrow-up-right-from-square"></i>
+                                </a>
+                            </div>
+
+                            <p class="text-color post-subtitle-post-bottom">
+                                <%= posts[3].content%>
+                            </p>
+                            <ul class="tag-list">
+                                <% posts[3].tagsDetail.forEach((item)=>{ %>
+                                    <li class="tag" data-name="<%= item.name %>" data-bg="<%= item.color.bg %>"
+                                        data-text="<%= item.color.text %>">
+                                        <%= item.name %>
+                                    </li>
+                                    <% }) %>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                <% } %>
+
+
+        </div>
+    </div>
+    <% } %>
+
+        <div id="all-posts-wrapper">
+            <% if(allPosts.length> 0){ %>
+                <div class="all-blog-posts mb-4">
+                    <div class="container">
+                        <h2 class="all-posts-title">All blog posts</h2>
+                        <div class="row">
+                            <% allPosts.forEach((postItem)=> { %>
+                                <div class="col-xl-4 col-lg-4 col-md-6 col-sm-12">
+                                    <div class="post-item">
+                                        <a href="#" target="_blank" class="post-item-image d-block">
+                                            <img class="post-item-image" src="/images/2tp.jpg" alt="">
+                                        </a>
+                                        <small class="author-date-color">
+                                            <%= postItem.formattedDate %>
+                                        </small>
+                                        <div class="post-title-row">
+                                            <a href="#" target="_blank" class="title-color title-size mt-1 fs-2">
+                                                <%= postItem.title %>
+                                            </a>
+                                            <a href="#" class="title-color post-title-icon">
+                                                <i class="fa-solid fa-arrow-up-right-from-square"></i>
+                                            </a>
+                                        </div>
+                                        <p class="text-color post-subtitle-post-item">
+                                            <%= postItem.content%>
+                                        </p>
+
+                                        <ul class="tag-list">
+                                            <% postItem.tagsDetail.forEach((item)=>{ %>
+                                                <li class="tag" data-name="<%= item.name %>"
+                                                    data-bg="<%= item.color.bg %>" data-text="<%= item.color.text %>">
+                                                    <%= item.name %>
+                                                </li>
+                                                <% }) %>
+                                        </ul>
+                                    </div>
+                                </div>
+                                <% }) %>
+
+                        </div>
+                    </div>
+                </div>
+                <%}%>
+
+                    <%- include("../../mixins/pagination.ejs") %>
+        </div>
