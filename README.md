@@ -16,6 +16,9 @@ Admin:
 
 http://localhost:3000/admin
 
+admin account:
+nhph20049@gmail.com
+phihung9102004
 ---
 
 ## 🛠 Tech Stack
