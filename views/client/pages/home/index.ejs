@@ -1,6 +1,6 @@
 <div class="hero">
     <div class="container text-center">
-        <h1 class="hero-title">THE BLOG</h1>
+        <h1 class="hero-title"><%= settingGeneral?.hero%></h1>
     </div>
 </div>
 
@@ -12,29 +12,33 @@
                 <div class="col-xl-6 col-lg-12">
                     <%if(posts[0]) {%>
                         <div class="post-featured">
-                            <a href="#" target="_blank" class="post-featured-image d-block">
-                                <img class="post-featured-image" src="/images/2tp.jpg" alt="">
+                            <a href="/posts/detail/<%= posts[0].slug %>" target="_blank"
+                                class="post-featured-image d-block">
+                                <img class="post-featured-image" src="<%= posts[0].thumbnail %>" alt="">
                             </a>
                             <small class="author-date-color">
                                 <%= posts[0].formattedDate %>
                             </small>
                             <div class="d-flex align-items-center justify-content-between">
-                                <a href="#" target="_blank" class="title-color mt-1 d-block fs-2">
+                                <a href="/posts/detail/<%= posts[0].slug %>" target="_blank"
+                                    class="title-color mt-1 d-block fs-2">
                                     <%= posts[0].title %>
                                 </a>
-                                <a href="#" target="_blank" class="title-color mt-1 d-block">
+                                <a href="/posts/detail/<%= posts[0].slug %>" target="_blank" class="title-color mt-1 d-block">
                                     <i class="fa-solid fa-arrow-up-right-from-square"></i>
                                 </a>
                             </div>
                             <p class="text-color post-subtitle-post-featured">
-                                <%= posts[0].content%>
+                                <%- posts[0].excerpt%>
                             </p>
 
                             <ul class="tag-list">
                                 <% posts[0].tagsDetail.forEach((item)=>{ %>
-                                    <li class="tag" data-name="<%= item.name %>" data-bg="<%= item.color.bg %>"
-                                        data-text="<%= item.color.text %>">
-                                        <%= item.name %>
+                                    <li>
+                                        <a class="tag" href="/tags/<%= item.slug %>" data-name="<%= item.name %>"
+                                            data-bg="<%= item.color.bg %>" data-text="<%= item.color.text %>">
+                                            <%= item.name %>
+                                        </a>
                                     </li>
                                     <% }) %>
                             </ul>
@@ -46,25 +50,29 @@
                         <div class="post-wide">
                             <div class="row">
                                 <div class="col-xl-7 col-lg-5 col-md-5 col-sm-5">
-                                    <a href="#" target="_blank" class="post-wide-image d-block">
-                                        <img src="/images/2tp.jpg" alt="">
+                                    <a href="/posts/detail/<%= posts[1].slug %>" target="_blank"
+                                        class="post-wide-image d-block">
+                                        <img src="<%= posts[1].thumbnail %>" alt="">
                                     </a>
                                 </div>
                                 <div class="col-xl-5 col-lg-7 col-md-7 col-sm-7">
                                     <small class="author-date-color">
                                         <%= posts[1].formattedDate %>
                                     </small>
-                                    <a href="#" target="_blank" class="title-color mt-1 d-block fs-4">
+                                    <a href="/posts/detail/<%= posts[1].slug %>" target="_blank"
+                                        class="title-color mt-1 d-block fs-4">
                                         <%= posts[1].title %>
                                     </a>
                                     <p class="text-color post-subtitle-post-wide">
-                                        <%= posts[1].content%>
+                                        <%- posts[1].excerpt%>
                                     </p>
                                     <ul class="tag-list">
                                         <% posts[1].tagsDetail.forEach((item)=>{ %>
-                                            <li class="tag" data-name="<%= item.name %>" data-bg="<%= item.color.bg %>"
-                                                data-text="<%= item.color.text %>">
-                                                <%= item.name %>
+                                            <li>
+                                                <a class="tag" href="/tags/<%= item.slug %>" data-name="<%= item.name %>"
+                                                    data-bg="<%= item.color.bg %>" data-text="<%= item.color.text %>">
+                                                    <%= item.name %>
+                                                </a>
                                             </li>
                                             <% }) %>
                                     </ul>
@@ -77,26 +85,30 @@
                                 <div class="post-wide">
                                     <div class="row">
                                         <div class="col-xl-7 col-lg-5 col-md-5 col-sm-5">
-                                            <a href="#" target="_blank" class="post-wide-image d-block">
-                                                <img src="/images/2tp.jpg" alt="">
+                                            <a href="/posts/detail/<%= posts[2].slug %>" target="_blank"
+                                                class="post-wide-image d-block">
+                                                <img src="<%= posts[2].thumbnail %>" alt="">
                                             </a>
                                         </div>
                                         <div class="col-xl-5 col-lg-7 col-md-7 col-sm-7">
                                             <small class="author-date-color">
                                                 <%= posts[2].formattedDate %>
                                             </small>
-                                            <a href="#" target="_blank" class="title-color d-block fs-4">
+                                            <a href="/posts/detail/<%= posts[2].slug %>" target="_blank"
+                                                class="title-color d-block fs-4">
                                                 <%= posts[2].title %>
                                             </a>
                                             <p class="text-color post-subtitle-post-wide">
-                                                <%= posts[2].content%>
+                                                <%- posts[2].excerpt%>
                                             </p>
                                             <ul class="tag-list">
                                                 <% posts[2].tagsDetail.forEach((item)=>{ %>
-                                                    <li class="tag" data-name="<%= item.name %>"
-                                                        data-bg="<%= item.color.bg %>"
-                                                        data-text="<%= item.color.text %>">
-                                                        <%= item.name %>
+                                                    <li>
+                                                        <a class="tag" href="/tags/<%= item.slug %>" data-name="<%= item.name %>"
+                                                            data-bg="<%= item.color.bg %>"
+                                                            data-text="<%= item.color.text %>">
+                                                            <%= item.name %>
+                                                        </a>
                                                     </li>
                                                     <% }) %>
                                             </ul>
@@ -111,8 +123,9 @@
                 <div class="post-bottom">
                     <div class="row">
                         <div class="col-xl-6 col-lg-12">
-                            <a href="#" target="_blank" class="post-bottom-image d-block">
-                                <img src="/images/2tp.jpg" alt="">
+                            <a href="/posts/detail/<%= posts[3].slug %>" target="_blank"
+                                class="post-bottom-image d-block">
+                                <img src="<%= posts[3].thumbnail %>" alt="">
                             </a>
                         </div>
                         <div class="col-xl-6 col-lg-12">
@@ -120,22 +133,25 @@
                                 <%= posts[3].formattedDate %>
                             </small>
                             <div class="d-flex align-items-center justify-content-between">
-                                <a href="#" target="_blank" class="title-color d-block fs-3">
+                                <a href="/posts/detail/<%= posts[3].slug %>" target="_blank"
+                                    class="title-color d-block fs-3">
                                     <%= posts[3].title %>
                                 </a>
-                                <a href="#" target="_blank" class="title-color mt-1 d-block">
+                                <a href="/posts/detail/<%= posts[3].slug %>" target="_blank" class="title-color mt-1 d-block">
                                     <i class="fa-solid fa-arrow-up-right-from-square"></i>
                                 </a>
                             </div>
 
                             <p class="text-color post-subtitle-post-bottom">
-                                <%= posts[3].content%>
+                                <%- posts[3].excerpt%>
                             </p>
                             <ul class="tag-list">
                                 <% posts[3].tagsDetail.forEach((item)=>{ %>
-                                    <li class="tag" data-name="<%= item.name %>" data-bg="<%= item.color.bg %>"
-                                        data-text="<%= item.color.text %>">
-                                        <%= item.name %>
+                                    <li>
+                                        <a class="tag" href="/tags/<%= item.slug %>" data-name="<%= item.name %>"
+                                            data-bg="<%= item.color.bg %>" data-text="<%= item.color.text %>">
+                                            <%= item.name %>
+                                        </a>
                                     </li>
                                     <% }) %>
                             </ul>
@@ -158,14 +174,15 @@
                             <% allPosts.forEach((postItem)=> { %>
                                 <div class="col-xl-4 col-lg-4 col-md-6 col-sm-12">
                                     <div class="post-item">
-                                        <a href="#" target="_blank" class="post-item-image d-block">
-                                            <img class="post-item-image" src="/images/2tp.jpg" alt="">
+                                        <a href="/posts/detail/<%= postItem.slug %>" target="_blank" class="post-item-image d-block">
+                                            <img class="post-item-image" src="<%= postItem.thumbnail %>" alt="">
                                         </a>
                                         <small class="author-date-color">
                                             <%= postItem.formattedDate %>
                                         </small>
                                         <div class="post-title-row">
-                                            <a href="#" target="_blank" class="title-color title-size mt-1 fs-2">
+                                            <a href="/posts/detail/<%= postItem.slug %>" target="_blank"
+                                                class="title-color title-size mt-1 fs-2">
                                                 <%= postItem.title %>
                                             </a>
                                             <a href="#" class="title-color post-title-icon">
@@ -173,14 +190,17 @@
                                             </a>
                                         </div>
                                         <p class="text-color post-subtitle-post-item">
-                                            <%= postItem.content%>
+                                            <%- postItem.excerpt%>
                                         </p>
 
                                         <ul class="tag-list">
                                             <% postItem.tagsDetail.forEach((item)=>{ %>
-                                                <li class="tag" data-name="<%= item.name %>"
-                                                    data-bg="<%= item.color.bg %>" data-text="<%= item.color.text %>">
-                                                    <%= item.name %>
+                                                <li>
+                                                    <a class="tag" href="/tags/<%= item.slug %>" data-name="<%= item.name %>"
+                                                        data-bg="<%= item.color.bg %>"
+                                                        data-text="<%= item.color.text %>">
+                                                        <%= item.name %>
+                                                    </a>
                                                 </li>
                                                 <% }) %>
                                         </ul>

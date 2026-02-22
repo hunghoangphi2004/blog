@@ -5,6 +5,12 @@
                 <% } %>
     </div>
 
+    <div class="admin-header-status">
+        <% if (filterStatus) { %>
+            <%- include("../../mixins/filterStatus.ejs") %>
+                <% } %>
+    </div>
+
     <div class="admin-header-right">
         <% if (create) { %>
             <%- include("../../mixins/createButton.ejs") %>
@@ -39,7 +45,7 @@
                     </strong>
                 </td>
                 <td>
-                    <%= allPost[i].status==="published" ?"Đã xuất bản":"Chưa xuất bản" %>
+                    <%= allPost[i].status==="published" ?"Đã duyệt":"Nháp" %>
                 </td>
                 <td>
                     <%= allPost[i].formattedDate %>

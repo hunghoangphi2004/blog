@@ -2,6 +2,7 @@ const Post = require("../../models/post.model");
 const dateHelper = require("../../helpers/formattedDate.helper")
 const Tag = require("../../models/tag.model")
 const tagHelper = require("../../helpers/colorTag.helper")
+const htmlHelper = require("../../helpers/stripHtml.helper")
 
 module.exports.index = async (req, res) => {
     let find = {
@@ -16,39 +17,65 @@ module.exports.index = async (req, res) => {
 
     posts = await dateHelper.formattedDate(posts);
     posts = await tagHelper.addTagColor(posts)
-    
-    
-    //all blog + phan trang
-    let objectPagination = {
-        limitItems: 6,
-        currentPage: parseInt(req.query.page) || 1,  
-    }
-    
-    let countPosts = await Post.countDocuments(find)
-    let skip = objectPagination.limitItems * (objectPagination.currentPage - 1);
-    let totalPage = Math.ceil(countPosts/objectPagination.limitItems);
 
-    objectPagination.skip = skip;
-    objectPagination.totalPage = totalPage;
+
+    //all blog + phan trang
+    let limitItems = 6;
+    let currentPage = parseInt(req.query.page) || 1;
+
+    if (currentPage < 1) currentPage = 1;
+
+    let countPosts = await Post.countDocuments(find);
+    let totalPage = Math.ceil(countPosts / limitItems);
+
+    if (currentPage > totalPage && totalPage > 0) {
+        currentPage = totalPage;
+    }
+
+    let skip = limitItems * (currentPage - 1);
+
+    let objectPagination = {
+        limitItems,
+        currentPage,
+        totalPage,
+        skip
+    };
 
     let allPosts = await Post.find(find).lean().limit(objectPagination.limitItems).skip(objectPagination.skip);
 
     allPosts = await dateHelper.formattedDate(allPosts);
     allPosts = await tagHelper.addTagColor(allPosts);
 
+    posts = posts.map(post => ({
+        ...post,
+        excerpt: htmlHelper.stripHTML(post.content).slice(0, 150)
+    }));
 
-    if(req.xhr){
+    allPosts = allPosts.map(post => ({
+        ...post,
+        excerpt: htmlHelper.stripHTML(post.content).slice(0, 150)
+    }));
+
+
+    if (req.xhr) {
         return res.json({
             allPosts,
             objectPagination
         })
     }
-    
+
     res.render("client/pages/home", {
-        layout: "client/layouts/default", posts, allPosts, objectPagination
+        layout: "client/layouts/default",
+        posts,
+        allPosts,
+        objectPagination,
+        title: "Trang chủ"
     })
 }
 
 module.exports.about = async (req, res) => {
-    res.send("OK")
+    res.render("client/pages/home/about", {
+        layout: "client/layouts/default",
+        title: "Giới thiệu"
+    })
 }

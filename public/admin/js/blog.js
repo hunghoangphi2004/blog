@@ -1,4 +1,17 @@
+function applyTagColor() {
+    document.querySelectorAll(".tag-list .tag").forEach(tag => {
+        tag.style.setProperty("--bg", tag.dataset.bg);
+        tag.style.setProperty('--text', tag.dataset.text);
+    });
+}
+
+document.querySelector("form").addEventListener("submit", () => {
+    tinymce.triggerSave();
+});
+
 document.addEventListener("DOMContentLoaded", () => {
+    applyTagColor();
+
     new TomSelect("#select-state", {
         plugins: ['remove_button'],
         maxItems: 3,
@@ -6,7 +19,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
         onInitialize() {
             Object.values(this.options).forEach(opt => {
-                opt.bg    = opt.$option.dataset.bg;
+                opt.bg = opt.$option.dataset.bg;
                 opt.color = opt.$option.dataset.color;
             });
         },
@@ -40,14 +53,14 @@ document.addEventListener("DOMContentLoaded", () => {
 
 //Upload Image
 const uploadImage = document.querySelector('[upload-image]');
-if(uploadImage){
+if (uploadImage) {
     const uploadImageInput = uploadImage.querySelector("[upload-image-input]");
     const uploadImagePreview = uploadImage.querySelector("[upload-image-preview]");
     console.log(uploadImageInput, uploadImagePreview)
-    uploadImageInput.addEventListener('change', (e)=>{
+    uploadImageInput.addEventListener('change', (e) => {
         // console.log(e)
         const file = e.target.files[0];
-        if(file){
+        if (file) {
             uploadImagePreview.src = URL.createObjectURL(file);
             console.log(uploadImagePreview.src)
         }
@@ -55,3 +68,4 @@ if(uploadImage){
 }
 
 //End Upload Image
+

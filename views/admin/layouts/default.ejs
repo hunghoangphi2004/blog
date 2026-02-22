@@ -18,6 +18,27 @@
 </head>
 
 <body class="theme-light">
+    <div class="flash-container">
+        <% if (messages.success) { %>
+            <div class="flash-message flash-success">
+                <span>
+                    <%= messages.success %>
+                </span>
+                <button class="flash-close">&times;</button>
+            </div>
+            <% } %>
+
+                <% if (messages.error) { %>
+                    <div class="flash-message flash-error">
+                        <span>
+                            <%= messages.error %>
+                        </span>
+                        <button class="flash-close">&times;</button>
+                    </div>
+                    <% } %>
+    </div>
+    
+
     <div class="admin-layout">
         <div class="admin-sider">
             <%- include("../partials/sider.ejs") %>

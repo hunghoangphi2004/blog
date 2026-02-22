@@ -42,10 +42,59 @@ if (buttonPagination) {
         button.addEventListener("click", () => {
             let url = new URL(window.location.href);
             const page = button.getAttribute("button-pagination");
-            
+
             url.searchParams.set("page", page);
             window.location.href = url.href
         })
 
     })
 }
+
+//Button Status
+const buttonStatus = document.querySelectorAll('[button-status]');
+if (buttonStatus.length > 0) {
+    let url = new URL(window.location.href);
+    // console.log(url);
+
+
+    buttonStatus.forEach(button => {
+        button.addEventListener('click', () => {
+            const status = button.getAttribute("button-status");
+
+            if (status) {
+                url.searchParams.set("status", status)
+            }
+            else {
+                url.searchParams.delete("status");
+            }
+
+            console.log(url.href);
+            window.location.href = url.href
+        })
+    })
+}
+//End Button Status
+
+// show alert
+document.addEventListener("DOMContentLoaded", function () {
+
+    const messages = document.querySelectorAll(".flash-message");
+
+    messages.forEach(message => {
+
+        // auto hide sau 4s
+        setTimeout(() => {
+            message.style.animation = "fadeOut 0.4s ease forwards";
+            setTimeout(() => message.remove(), 400);
+        }, 4000);
+
+        // nút X
+        const btn = message.querySelector(".flash-close");
+        btn.addEventListener("click", () => {
+            message.style.animation = "fadeOut 0.4s ease forwards";
+            setTimeout(() => message.remove(), 400);
+        });
+    });
+
+});
+//end show alert

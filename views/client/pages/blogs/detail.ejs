@@ -1,0 +1,79 @@
+<div class="post-detail">
+    <div class="container">
+        <div class="row">
+            <div class="col-12 col-lg-4 order-2 order-lg-1">
+                <div class="recent-post">
+                    <div class="row">
+                        <div class="col-12">
+                            <% if(recentPosts.length> 0){ %>
+                                <div class="all-blog-posts mb-4">
+                                        <h2 class="all-posts-title">Recent blog posts</h2>
+                                        <div class="row">
+                                            <% recentPosts.forEach((postItem)=> { %>
+                                                <div class="col-xl-12 col-lg-12 col-md-6 ">
+                                                    <div class="post-item">
+                                                        <a href="/posts/detail/<%= postItem.slug %>" target="_blank" class="post-item-image d-block">
+                                                            <img class="post-item-image" src="<%= postItem.thumbnail %>"
+                                                                alt="">
+                                                        </a>
+                                                        <small class="author-date-color mb-4">
+                                                            <%= postItem.formattedDate %>
+                                                        </small>
+                                                        <div class="post-title-row">
+                                                            <a href="/posts/detail/<%= postItem.slug %>" target="_blank"
+                                                                class="title-color title-size mt-1 fs-2">
+                                                                <%= postItem.title %>
+                                                            </a>
+                                                            <a href="/posts/detail/<%= postItem.slug %>" class="title-color post-title-icon">
+                                                                <i class="fa-solid fa-arrow-up-right-from-square"></i>
+                                                            </a>
+                                                        </div>
+                                                        <p class="text-color post-subtitle-post-item">
+                                                            <%- postItem.excerpt%>
+                                                        </p>
+
+                                                        <ul class="tag-list">
+                                                            <% postItem.tagsDetail.forEach((item)=>{ %>
+                                                                <li>
+                                                                    <a class="tag" href="/tags/<%= item.slug %>" data-name="<%= item.name %>"
+                                                                        data-bg="<%= item.color.bg %>"
+                                                                        data-text="<%= item.color.text %>">
+                                                                        <%= item.name %>
+                                                                    </a>
+                                                                </li>
+                                                                <% }) %>
+                                                        </ul>
+                                                    </div>
+                                                </div>
+                                                <% }) %>
+                                        </div>
+                                </div>
+                                <%}%>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-12 col-lg-8 order-1 order-lg-2">
+                <div class="detail">
+                    <small class="author-date-color">
+                        <%= post.formattedDate %>
+                    </small>
+                    <h1 class="detail-post-title">
+                        <%= post.title %>
+                    </h1>
+                    <div class="detail-post-content"><%- post.content %></div>
+                    <ul class="tag-list">
+                        <% post.tagsDetail.forEach((item)=>{ %>
+                            <li>
+                                <a class="tag" href="#" data-name="<%= item.name %>" data-bg="<%= item.color.bg %>"
+                                    data-text="<%= item.color.text %>">
+                                    <%= item.name %>
+                                </a>
+                            </li>
+                            <% }) %>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

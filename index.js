@@ -8,6 +8,11 @@ const clientRoutes = require("./routes/client/index.routes");
 const expressLayouts = require("express-ejs-layouts");
 const methodOverride = require("method-override");
 const path = require("path")
+const cookieParser = require('cookie-parser');
+
+
+const flash = require('express-flash')
+const session = require('express-session');
 
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
@@ -30,6 +35,17 @@ app.use(express.static(`${__dirname}/public`))
 app.use(expressLayouts);
 app.set("layout", "layouts/default");
 
+app.use(cookieParser('SFSDFSDFAFSD'));
+
+app.use(session({
+    secret: "secret-key",   
+    resave: false,
+    saveUninitialized: false,
+    cookie: { maxAge: 60000 }
+}));
+
+app.use(flash());
+
 database.connectDB();
 
 adminRoutes(app);
@@ -39,6 +55,8 @@ app.use('/tinymce', express.static(path.join(__dirname, 'node_modules', 'tinymce
 app.use('/tom-select', express.static(
     path.join(__dirname, 'node_modules/tom-select/dist')
 ));
+
+
 
 app.listen(port, ()=>{
     console.log(`Run on port ${port}`);

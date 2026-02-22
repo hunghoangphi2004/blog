@@ -55,6 +55,7 @@ module.exports.detail = async (req, res) => {
 module.exports.create = async (req, res) => {
     const search = null;
     const create = null;
+    req.flash("success", "Thêm bài viết thành công!");
     res.render("admin/pages/tags/create", {
         layout: "admin/layouts/default", title: "Thêm mới", search, create
     })
@@ -64,9 +65,11 @@ module.exports.createPost = async (req, res) => {
     try {
         const tag = new Tag(req.body);
         await tag.save();
+        req.flash("success", "Thêm tag thành công!");
         res.redirect(`${systemConfig.prefixAdmin}/tags`);
     } catch (err) {
-        console.log(err)
+        req.flash("error", "Có lỗi xảy ra!");
+        return res.redirect("back");
     }
 }
 
@@ -86,17 +89,29 @@ module.exports.edit = async (req, res) => {
 }
 
 module.exports.editPatch = async (req, res) => {
-    const id = req.params.id;
-    await Tag.updateOne({ _id: id }, {
-        ...req.body
-    })
-    res.redirect(`${systemConfig.prefixAdmin}/tags`);
+    try {
+        const id = req.params.id;
+        await Tag.updateOne({ _id: id }, {
+            ...req.body
+        })
+        req.flash("success", "Cập nhật tag thành công!");
+        res.redirect(`${systemConfig.prefixAdmin}/tags`);
+    } catch (err) {
+        req.flash("error", "Có lỗi xảy ra!");
+        return res.redirect("back");
+    }
 }
 
 module.exports.delete = async (req, res) => {
-    const id = req.params.id;
-    await Tag.updateOne({ _id: id }, {
-        ...req.body, deleted: true
-    })
-    res.redirect(`${systemConfig.prefixAdmin}/tags`);
+    try {
+        const id = req.params.id;
+        await Tag.updateOne({ _id: id }, {
+            ...req.body, deleted: true
+        })
+        res.redirect(`${systemConfig.prefixAdmin}/tags`);
+    } catch (err) {
+        req.flash("error", "Có lỗi xảy ra!");
+        return res.redirect("back");
+    }
+
 }
